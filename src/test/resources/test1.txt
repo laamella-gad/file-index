@@ -1,0 +1,6 @@
+1234567890
+
+ABCDEFGHIJ
+abcde
+line with \rline with \n
+line with \r\n
