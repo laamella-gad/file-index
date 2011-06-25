@@ -9,7 +9,12 @@
 	<packaging>jar</packaging>
 
 	<description>Indexes files. Structures, lines for example, in the file will be accessible at high speed with low memory usage. The index also includes a cache to reduce disk hits.</description>
-	<url>http://maven.apache.org</url>
+	<url>https://github.com/matozoid/file-index</url>
+
+	<organization>
+		<name>Laamella Gad</name>
+		<url>http://www.laamella.com</url>
+	</organization>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -22,22 +27,7 @@
 			<version>4.8.1</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.6.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.1</version>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
-	<organization>
-		<name>Laamella Gad</name>
-		<url>http://www.laamella.com</url>
-	</organization>
 	<build>
 		<plugins>
 			<plugin>

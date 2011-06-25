@@ -35,5 +35,4 @@ public class CachingMap<K, V> implements MinimalMap<K, V> {
 	@Override public boolean contains(final K key) throws IOException {
 		return get(key) != null;
 	}
-
 }

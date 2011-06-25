@@ -7,10 +7,6 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 public class FileIndexTest {
-	@Test public void emptyIndex() {
-		new FileAreaIndex<String>();
-	}
-
 	@Test public void indexOneItem() {
 		final FileAreaIndex<String> index = new FileAreaIndex<String>();
 		index.index("aap", new FileArea(20, 10));
