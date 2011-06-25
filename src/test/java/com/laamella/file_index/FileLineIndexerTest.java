@@ -10,7 +10,6 @@ import java.nio.charset.Charset;
 
 import org.junit.Test;
 
-
 public class FileLineIndexerTest {
 	@Test public void test1FileAreas() throws IOException {
 		final URL test1Url = getClass().getResource("/test1.txt");
@@ -23,6 +22,7 @@ public class FileLineIndexerTest {
 		assertEquals(29, index.get(5).startPosition);
 		assertEquals(42, index.get(6).startPosition);
 		assertEquals(55, index.get(7).startPosition);
+		assertEquals(71, index.get(8).startPosition);
 		assertEquals(11, index.get(1).size);
 		assertEquals(1, index.get(2).size);
 		assertEquals(11, index.get(3).size);
@@ -30,6 +30,7 @@ public class FileLineIndexerTest {
 		assertEquals(13, index.get(5).size);
 		assertEquals(13, index.get(6).size);
 		assertEquals(16, index.get(7).size);
-		assertFalse(index.contains(8));
+		assertEquals(65, index.get(8).size);
+		assertFalse(index.contains(9));
 	}
 }

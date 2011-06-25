@@ -6,8 +6,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.laamella.file_index.FileAreaIndex.FileArea;
-
 public class FileIndexTest {
 	@Test public void emptyIndex() {
 		new FileAreaIndex<String>();

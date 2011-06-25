@@ -4,3 +4,4 @@ ABCDEFGHIJ
 abcde
 line with \rline with \n
 line with \r\n
+ᐊᓕᒍᖅ ᓂᕆᔭᕌᖓᒃᑯ ᓱᕋᙱᑦᑐᓐᓇᖅᑐᖓ

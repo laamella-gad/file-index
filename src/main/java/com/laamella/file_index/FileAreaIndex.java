@@ -5,25 +5,12 @@ import java.util.TreeMap;
 
 /**
  * A fast storage for areas in a file. It is created by the user, and is
- * populated by an Indexer.
+ * populated by an indexer.
  * 
  * @param <K>
  *            the key.
  */
-public class FileAreaIndex<K extends Comparable<K>> {
-	public static class FileArea {
-		public final long startPosition;
-		public final int size;
-
-		public FileArea(final long startPosition, final int size) {
-			this.startPosition = startPosition;
-			this.size = size;
-		}
-
-		@Override public String toString() {
-			return "FileArea[" + startPosition + "," + size + "]";
-		}
-	}
+public class FileAreaIndex<K extends Comparable<K>> implements MinimalMap<K, FileArea> {
 
 	private final Map<K, FileArea> index;
 	private int largestAreaSize;
@@ -52,11 +39,11 @@ public class FileAreaIndex<K extends Comparable<K>> {
 		}
 	}
 
-	public final FileArea get(final K key) {
+	@Override public final FileArea get(final K key) {
 		return index.get(key);
 	}
 
-	public final boolean contains(final K key) {
+	@Override public final boolean contains(final K key) {
 		return index.containsKey(key);
 	}
 

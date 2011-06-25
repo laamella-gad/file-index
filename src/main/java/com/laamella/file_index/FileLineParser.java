@@ -47,7 +47,7 @@ public abstract class FileLineParser {
 							gotNewLine = true;
 						}
 						line.append(c);
-						position++;
+						position += byteSizeOfCharacter(c, charset);
 					}
 					out.clear();
 				} while (result.isOverflow());
@@ -60,11 +60,22 @@ public abstract class FileLineParser {
 		}
 	}
 
+	private int byteSizeOfCharacter(final char c, final Charset charset) {
+		// TODO inefficient
+		return ("" + c).getBytes(charset).length;
+	}
+
 	private void lineDone() {
 		lineRead(startPosition, (int) (position - startPosition), line);
 		line = new StringBuffer();
 		startPosition = position;
 	}
 
+	/**
+	 * 
+	 * @param startPosition
+	 * @param size
+	 * @param line
+	 */
 	protected abstract void lineRead(long startPosition, int size, StringBuffer line);
 }

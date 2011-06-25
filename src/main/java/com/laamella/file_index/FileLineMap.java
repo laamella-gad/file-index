@@ -9,9 +9,13 @@ import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 
-import com.laamella.file_index.FileAreaIndex.FileArea;
-
-public class FileLineDataSource<K extends Comparable<K>> {
+/**
+ * A map of a key to a line in a file.
+ * 
+ * @param <K>
+ *            the type of the keys.
+ */
+public class FileLineMap<K extends Comparable<K>> implements MinimalMap<K, String> {
 	private final FileAreaIndex<K> fileAreaIndex;
 	private final File file;
 	private CharsetDecoder decoder;
@@ -20,8 +24,7 @@ public class FileLineDataSource<K extends Comparable<K>> {
 	private FileChannel channel;
 	private FileInputStream fileInputStream;
 
-	public FileLineDataSource(final File file, final FileAreaIndex<K> fileAreaIndex, final Charset charset)
-			throws IOException {
+	public FileLineMap(final File file, final FileAreaIndex<K> fileAreaIndex, final Charset charset) throws IOException {
 		this.file = file;
 		this.fileAreaIndex = fileAreaIndex;
 		decoder = charset.newDecoder();
@@ -30,7 +33,7 @@ public class FileLineDataSource<K extends Comparable<K>> {
 		open();
 	}
 
-	public FileLineDataSource(final File file, final FileLineIndexer<K> fileLineIndexer, final Charset charset)
+	public FileLineMap(final File file, final FileLineIndexer<K> fileLineIndexer, final Charset charset)
 			throws IOException {
 		this(file, fileLineIndexer.index(file, charset), charset);
 	}
@@ -45,7 +48,7 @@ public class FileLineDataSource<K extends Comparable<K>> {
 		fileInputStream.close();
 	}
 
-	public String readLine(final K key) throws IOException {
+	@Override public String get(final K key) throws IOException {
 		final FileArea fileArea = fileAreaIndex.get(key);
 		if (fileArea == null) {
 			return null;
@@ -60,5 +63,10 @@ public class FileLineDataSource<K extends Comparable<K>> {
 		decoder.decode(byteBuffer, charBuffer, false);
 		charBuffer.flip();
 		return charBuffer.toString();
+	}
+
+	@Override public boolean contains(final K key) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

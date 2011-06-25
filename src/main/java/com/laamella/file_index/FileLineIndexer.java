@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
-import com.laamella.file_index.FileAreaIndex.FileArea;
-
 /**
  * Read a file and registers every line as a FileArea. Keys area created by the
  * user.

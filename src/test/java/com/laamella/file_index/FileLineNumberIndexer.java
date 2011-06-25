@@ -1,7 +1,5 @@
 package com.laamella.file_index;
 
-import com.laamella.file_index.FileAreaIndex.FileArea;
-
 class FileLineNumberIndexer extends FileLineIndexer<Integer> {
 	private int key = 0;
 
