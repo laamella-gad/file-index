@@ -8,6 +8,7 @@ import java.nio.charset.Charset;
  * Read a file and registers every line as a FileArea. Keys area created by the
  * user.
  */
+// TODO save/load indexes
 public abstract class FileLineIndexer<K extends Comparable<K>> {
 	public FileAreaIndex<K> index(final File file, final Charset charset) throws IOException {
 		final FileAreaIndex<K> fileAreaIndex = new FileAreaIndex<K>();

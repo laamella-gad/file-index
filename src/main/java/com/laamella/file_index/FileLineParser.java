@@ -14,7 +14,7 @@ import java.nio.charset.CoderResult;
 /**
  * Utility class that reads all lines from a file.
  */
-public abstract class FileLineParser {
+abstract class FileLineParser {
 	private long position = 0;
 	private long startPosition = 0;
 	private boolean gotCarriageReturn = false;
