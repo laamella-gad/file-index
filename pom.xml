@@ -4,10 +4,9 @@
 
 	<groupId>com.laamella</groupId>
 	<artifactId>file-index</artifactId>
-	<name>File Index</name>
 	<version>1.0-SNAPSHOT</version>
-	<packaging>jar</packaging>
 
+	<name>${project.groupId}:${project.artifactId}</name>
 	<description>Indexes files. Structures, lines for example, in the file will be accessible at high speed with low memory usage. The index also includes a cache to reduce disk hits.</description>
 	<url>https://github.com/matozoid/file-index</url>
 
@@ -28,6 +27,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -41,4 +41,25 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<developers>
+		<developer>
+			<name>Danny van Bruggen</name>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git@github.com:laamella-gad/file-index.git</connection>
+		<developerConnection>scm:git:git@github.com:laamella-gad/file-index.git</developerConnection>
+		<url>https://github.com/laamella-gad/file-index.git</url>
+	</scm>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
 </project>
