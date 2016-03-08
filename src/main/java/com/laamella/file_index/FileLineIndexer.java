@@ -5,11 +5,17 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 
 /**
- * Read a file and registers every line as a FileArea. Keys area created by the
+ * Read a file and registers every line as a FileArea. Keys are created by the
  * user.
  */
 // TODO save/load indexes
-public abstract class FileLineIndexer<K extends Comparable<K>> {
+public class FileLineIndexer<K extends Comparable<K>> {
+	private final KeyFactory<K> keyFactory;
+
+	public FileLineIndexer(KeyFactory<K> keyFactory) {
+		this.keyFactory = keyFactory;
+	}
+
 	public FileAreaIndex<K> index(final File file, final Charset charset) throws IOException {
 		final FileAreaIndex<K> fileAreaIndex = new FileAreaIndex<K>();
 		index(file, fileAreaIndex, charset);
@@ -17,14 +23,15 @@ public abstract class FileLineIndexer<K extends Comparable<K>> {
 	}
 
 	public void index(final File file, final FileAreaIndex<K> fileAreaIndex, final Charset charset) throws IOException {
-		new FileLineParser() {
-			@Override protected void lineRead(final long startPosition, final int size, final StringBuffer line) {
-				final FileArea area = new FileArea(startPosition, size);
-				final K key = createKey(area, line);
-				fileAreaIndex.index(key, area);
-			}
-		}.parse(file, charset);
+		new FileLineParser().parse(file, charset, (startPosition, size, line) -> {
+					final FileArea area = new FileArea(startPosition, size);
+					final K key = keyFactory.createKey(area, line);
+					fileAreaIndex.index(key, area);
+				}
+		);
 	}
 
-	protected abstract K createKey(FileArea fileArea, StringBuffer line);
+	public interface KeyFactory<K> {
+		K createKey(FileArea fileArea, StringBuffer line);
+	}
 }

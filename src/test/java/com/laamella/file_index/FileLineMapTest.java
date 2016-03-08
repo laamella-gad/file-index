@@ -15,8 +15,8 @@ public class FileLineMapTest {
 		final URL test1Url = getClass().getResource("/test1.txt");
 		final File file = new File(test1Url.getFile());
 		final Charset utf8 = Charset.forName("UTF-8");
-		final FileAreaIndex<Integer> index = new FileLineNumberIndexer().index(file, utf8);
-		final FileLineMap<Integer> map = new FileLineMap<Integer>(file, index, utf8);
+		final FileAreaIndex<Integer> index = new FileLineIndexer<>(new IncrementalKeyFactory()).index(file, utf8);
+		final FileLineMap<Integer> map = new FileLineMap<>(file, index, utf8);
 		assertEquals("1234567890" + (char) 10, map.get(1));
 		assertEquals("" + (char) 10, map.get(2));
 		assertEquals("ABCDEFGHIJ" + (char) 10, map.get(3));

@@ -14,7 +14,7 @@ public class FileLineIndexerTest {
 	@Test public void test1FileAreas() throws IOException {
 		final URL test1Url = getClass().getResource("/test1.txt");
 		final File file = new File(test1Url.getFile());
-		final FileAreaIndex<Integer> index = new FileLineNumberIndexer().index(file, Charset.forName("UTF-8"));
+		final FileAreaIndex<Integer> index = new FileLineIndexer<>(new IncrementalKeyFactory()).index(file, Charset.forName("UTF-8"));
 		assertEquals(0, index.get(1).startPosition);
 		assertEquals(11, index.get(2).startPosition);
 		assertEquals(12, index.get(3).startPosition);

@@ -17,7 +17,7 @@ public class CachingMap<K, V> implements MinimalMap<K, V> {
 
 	public CachingMap(final MinimalMap<K, V> mapToCache, final int cacheSize) {
 		this.mapToCache = mapToCache;
-		cache = new LeastRecentlyUsedCache<K, V>(cacheSize);
+		cache = new LeastRecentlyUsedCache<>(cacheSize);
 	}
 
 	@Override public V get(final K key) throws IOException {

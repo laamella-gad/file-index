@@ -13,15 +13,18 @@ import java.nio.charset.CoderResult;
 
 /**
  * Utility class that reads all lines from a file.
+ * Not thread safe.
  */
-abstract class FileLineParser {
+class FileLineParser {
 	private long position = 0;
 	private long startPosition = 0;
 	private boolean gotCarriageReturn = false;
 	private boolean gotNewLine = false;
 	private StringBuffer line = new StringBuffer();
+	private LineConsumer lineConsumer;
 
-	public void parse(final File file, final Charset charset) throws IOException {
+	public void parse(final File file, final Charset charset, final LineConsumer lineConsumer) throws IOException {
+		this.lineConsumer = lineConsumer;
 		final FileInputStream fileInputStream = new FileInputStream(file);
 		try {
 			final FileChannel channel = fileInputStream.getChannel();
@@ -66,16 +69,12 @@ abstract class FileLineParser {
 	}
 
 	private void lineDone() {
-		lineRead(startPosition, (int) (position - startPosition), line);
+		lineConsumer.consume(startPosition, (int) (position - startPosition), line);
 		line = new StringBuffer();
 		startPosition = position;
 	}
 
-	/**
-	 * 
-	 * @param startPosition
-	 * @param size
-	 * @param line
-	 */
-	protected abstract void lineRead(long startPosition, int size, StringBuffer line);
+	public interface LineConsumer {
+		void consume(long startPosition, int size, StringBuffer line);
+	}
 }

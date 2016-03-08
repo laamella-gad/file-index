@@ -11,7 +11,6 @@ import java.util.TreeMap;
  *            the key.
  */
 public class FileAreaIndex<K extends Comparable<K>> implements MinimalMap<K, FileArea> {
-
 	private final Map<K, FileArea> index;
 	private int largestAreaSize;
 
