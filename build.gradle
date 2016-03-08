@@ -9,6 +9,9 @@ apply plugin: 'maven-publish'
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
 
+group = 'com.laamella'
+version = '1.0.1'
+
 repositories {
     maven { url "http://dl.bintray.com/laamella-gad/com.laamella" }
     maven { url "http://repo.maven.apache.org/maven2" }
@@ -21,29 +24,31 @@ dependencies {
 bintray {
     user = System.getenv('BINTRAY_USER')
     key = System.getenv('BINTRAY_KEY')
+
+    configurations = ['archives']
     pkg {
         repo = 'com.laamella'
-        name = 'file-index'
+        name = project.name
         userOrg = 'laamella-gad'
         licenses = ['Apache-2.0']
         vcsUrl = 'https://github.com/laamella-gad/file-index.git'
         version {
-            name = '1.0'
-            desc = 'File Index 1.0'
-            released = new Date()
-            vcsTag = '1.0'
+            name = project.version
         }
     }
-    publications = ['MyPublication']
 }
 
-publishing {
-    publications {
-        MyPublication(MavenPublication) {
-            from components.java
-            groupId 'com.laamella'
-            artifactId 'file-index'
-            version '1.0'
-        }
-    }
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
 }
