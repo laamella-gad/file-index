@@ -14,11 +14,11 @@ version = '1.1'
 
 repositories {
     maven { url "http://dl.bintray.com/laamella-gad/com.laamella" }
-    maven { url "http://repo.maven.apache.org/maven2" }
+    maven { url "https://repo.maven.apache.org/maven2" }
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.8.1'
+    testCompile 'org.junit.jupiter:junit-jupiter-engine:5.1.0'
 }
 
 bintray {
