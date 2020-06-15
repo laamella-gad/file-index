@@ -17,7 +17,7 @@ public class FileLineIndexer<K extends Comparable<K>> {
 	}
 
 	public FileAreaIndex<K> index(final File file, final Charset charset) throws IOException {
-		final FileAreaIndex<K> fileAreaIndex = new FileAreaIndex<K>();
+		final FileAreaIndex<K> fileAreaIndex = new FileAreaIndex<>();
 		index(file, fileAreaIndex, charset);
 		return fileAreaIndex;
 	}

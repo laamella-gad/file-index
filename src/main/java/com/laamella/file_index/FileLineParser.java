@@ -25,10 +25,8 @@ class FileLineParser {
 
 	public void parse(final File file, final Charset charset, final LineConsumer lineConsumer) throws IOException {
 		this.lineConsumer = lineConsumer;
-		final FileInputStream fileInputStream = new FileInputStream(file);
-		try {
-			final FileChannel channel = fileInputStream.getChannel();
-			try {
+		try (FileInputStream fileInputStream = new FileInputStream(file)) {
+			try (FileChannel channel = fileInputStream.getChannel()) {
 				final MappedByteBuffer map = channel.map(MapMode.READ_ONLY, 0, channel.size());
 				final CharsetDecoder decoder = charset.newDecoder();
 				final CharBuffer out = CharBuffer.allocate(4096);
@@ -55,11 +53,7 @@ class FileLineParser {
 					out.clear();
 				} while (result.isOverflow());
 				lineDone();
-			} finally {
-				channel.close();
 			}
-		} finally {
-			fileInputStream.close();
 		}
 	}
 

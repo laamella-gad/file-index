@@ -18,7 +18,7 @@ public class FileAreaIndex<K extends Comparable<K>> implements MinimalMap<K, Fil
 	 * Create a new, empty index.
 	 */
 	public FileAreaIndex() {
-		index = new TreeMap<K, FileArea>();
+		index = new TreeMap<>();
 	}
 
 	/**

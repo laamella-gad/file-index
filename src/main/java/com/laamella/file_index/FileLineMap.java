@@ -18,9 +18,9 @@ import java.nio.charset.CharsetDecoder;
 public class FileLineMap<K extends Comparable<K>> implements MinimalMap<K, String> {
 	private final FileAreaIndex<K> fileAreaIndex;
 	private final File file;
-	private CharsetDecoder decoder;
-	private CharBuffer charBuffer;
-	private ByteBuffer byteBuffer;
+	private final CharsetDecoder decoder;
+	private final CharBuffer charBuffer;
+	private final ByteBuffer byteBuffer;
 	private FileChannel channel;
 	private FileInputStream fileInputStream;
 
