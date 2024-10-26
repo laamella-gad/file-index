@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-    testCompile 'org.junit.jupiter:junit-jupiter-engine:5.11.2'
+    testCompile 'org.junit.jupiter:junit-jupiter-engine:5.11.3'
 }
 
 bintray {
